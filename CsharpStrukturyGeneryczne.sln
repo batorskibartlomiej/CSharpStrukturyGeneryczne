@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2_KolekcjaGeneryczne", "2_K
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1_TypyGeneryczneTests", "TestProject1\1_TypyGeneryczneTests.csproj", "{BA773AB6-D041-45FB-90B0-3D3FE7FD1C33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2_KolekcjaGenerycznaTests", "2_KolekcjaGenerycznaTests\2_KolekcjaGenerycznaTests.csproj", "{DE5A6555-7863-451E-BCD0-7343F8C1F604}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BA773AB6-D041-45FB-90B0-3D3FE7FD1C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA773AB6-D041-45FB-90B0-3D3FE7FD1C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA773AB6-D041-45FB-90B0-3D3FE7FD1C33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE5A6555-7863-451E-BCD0-7343F8C1F604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE5A6555-7863-451E-BCD0-7343F8C1F604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE5A6555-7863-451E-BCD0-7343F8C1F604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE5A6555-7863-451E-BCD0-7343F8C1F604}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
