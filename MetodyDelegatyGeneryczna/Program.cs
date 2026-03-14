@@ -1,25 +1,39 @@
 ﻿
 
-namespace _3_KlasyIInterfejsyGeneryczne
+using __4_metodyDelegatyGeneryczne;
+using static __4_metodyDelegatyGeneryczne.KolejkaExtensions;
+
+namespace _4_metodyDelegatyGeneryczne
 {
      class Program
     {
+
+        static void KonsolaWypisz(double dane)
+        {
+            Console.WriteLine(dane);
+
+        }
         static void Main(string[] args)
         {
             var kolejka = new KolejkaKolowa<double>();
 
             WprowadzanieDanych(kolejka);
-            kolejka.Drukuj();
-            
 
-            var elementyJakoInt = kolejka.ElementJako<double, int>();
+            //var konsolaWyjscie = new Drukarka<double>(KonsolaWypisz);
+
+            //kolejka.Drukuj(konsolaWyjscie);
+
+            kolejka.Drukuj(KonsolaWypisz);
 
 
-            foreach (var item in elementyJakoInt)
-            {
-                Console.WriteLine(item);
+            //var elementyJakoInt = kolejka.ElementJako<double, int>();
 
-            }
+
+            //foreach (var item in elementyJakoInt)
+            //{
+            //    Console.WriteLine(item);
+
+            //}
 
             PrzetwarzanieDanych(kolejka);
         }

@@ -14,7 +14,39 @@
             //Dictionary2();
             //SortedDictionary();
             //SortedList();
+            //SortedSet();
 
+            var pracownicy = new DzialyKolekcja();
+            //pracownicy.Add("Księgowosc", new SortedSet<Pracownik>(new PracownikComparer()));
+
+
+            pracownicy.Add("Księgowosc",new Pracownik { Nazwisko = "Nowak" }).
+                       Add("Księgowosc",new Pracownik { Nazwisko = "Kowal" }).
+                       Add("Księgowosc",new Pracownik { Nazwisko = "Kaczor" }).
+                       Add("Księgowosc",new Pracownik { Nazwisko = "Bogacki" }).
+                       Add("Księgowosc",new Pracownik { Nazwisko = "Nowak" });
+
+            //pracownicy.Add("Sprzedaz", new SortedSet<Pracownik>(new PracownikComparer()));
+
+            pracownicy.Add("Sprzedaz",new Pracownik { Nazwisko = "Nowak" }).
+                       Add("Sprzedaz",new Pracownik { Nazwisko = "Glowacki" }).
+                       Add("Sprzedaz",new Pracownik { Nazwisko = "Batorski" }).
+                       Add("Sprzedaz",new Pracownik { Nazwisko = "Nowak" });
+
+
+            foreach (var item in pracownicy)
+            {
+                Console.WriteLine("Dział : " + item.Key);
+                foreach (var pracownik in item.Value)
+                {
+                    Console.WriteLine("\t"+ pracownik.Nazwisko);
+                }
+            }
+           
+        }
+
+        private static void SortedSet()
+        {
             var set = new SortedSet<int>();
             set.Add(5);
             set.Add(3);
@@ -139,6 +171,9 @@
 
             var elementPierwszy = lista.First;
             var elementOststani = lista.Last;
+
+
+             
 
             lista.AddAfter(elementPierwszy, 10);
             lista.AddBefore(elementPierwszy, 20);

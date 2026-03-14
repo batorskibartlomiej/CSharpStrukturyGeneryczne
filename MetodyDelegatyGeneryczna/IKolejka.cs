@@ -1,4 +1,4 @@
-﻿namespace _3_KlasyIInterfejsyGeneryczne
+﻿namespace _4_metodyDelegatyGeneryczne
 {
     public interface IKolejka<T>: IEnumerable<T>
     {
