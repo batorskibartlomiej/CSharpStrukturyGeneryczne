@@ -1,6 +1,7 @@
 ﻿
 
 using __4_metodyDelegatyGeneryczne;
+using System.Threading.Channels;
 using static __4_metodyDelegatyGeneryczne.KolejkaExtensions;
 
 namespace _4_metodyDelegatyGeneryczne
@@ -8,34 +9,47 @@ namespace _4_metodyDelegatyGeneryczne
      class Program
     {
 
-        static void KonsolaWypisz(double dane)
-        {
-            Console.WriteLine(dane);
-
-        }
+        
         static void Main(string[] args)
         {
-            var kolejka = new KolejkaKolowa<double>();
+            
+
+            
+
+            Action<double> drukuj = x => Console.WriteLine(x);
+            Action<bool> drukujBool = x => Console.WriteLine(x);
+            Action<int, int, int> test = (a, b, c) => Console.WriteLine(a + b + c);
+            Func<double, double> potegowanie = d => d * d;
+            Func<double, double, double> dodaj = (x,y) => x + y;
+            Predicate<double> jestMniejszeOdSto = d => d < 100;
+
+            drukujBool( jestMniejszeOdSto( potegowanie(dodaj(6,8))));
+
+            var kolejka = new KolejkaKolowa<double>(pojemnosc:3);
+            kolejka.elementUsuniety += Kolejka_elementUsuniety;
 
             WprowadzanieDanych(kolejka);
 
-            //var konsolaWyjscie = new Drukarka<double>(KonsolaWypisz);
+            Converter<double, DateTime> konwerter = d => new DateTime(2018,1,1).AddDays(d);
+            var jakoData = kolejka.Mapuj(konwerter);
+            foreach (var item in jakoData)
+            {
+                Console.WriteLine(item);
+            }
 
-            //kolejka.Drukuj(konsolaWyjscie);
+            
 
-            kolejka.Drukuj(KonsolaWypisz);
-
-
-            //var elementyJakoInt = kolejka.ElementJako<double, int>();
+            kolejka.Drukuj(d => Console.WriteLine(d));
 
 
-            //foreach (var item in elementyJakoInt)
-            //{
-            //    Console.WriteLine(item);
-
-            //}
+           
 
             PrzetwarzanieDanych(kolejka);
+        }
+
+        private static void Kolejka_elementUsuniety(object? sender, ElementUsunietyEventArgs<double> e)
+        {
+            Console.WriteLine("Kolejka jest pełna. Element usuniety to : {0} Nowy element to {1}", e.ElementUsuniety, e.ElemntNowy);
         }
 
         private static void PrzetwarzanieDanych(IKolejka<double> kolejka)

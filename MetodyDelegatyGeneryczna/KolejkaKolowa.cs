@@ -20,16 +20,39 @@ namespace _4_metodyDelegatyGeneryczne
             base.Zapisz(wartosc);
             if (kolejka.Count > _pojemnosc)
             {
-                kolejka.Dequeue();
+                var usuniety =  kolejka.Dequeue();
+                PoUsunieciuelemntu(usuniety,wartosc);
+            }
+        }
+
+        private void PoUsunieciuelemntu(T? usuniety, T? wartosc)
+        {
+            if(elementUsuniety != null)
+            {
+                var args = new ElementUsunietyEventArgs<T>(usuniety, wartosc);
+                elementUsuniety(this, args);
             }
         }
 
         public override bool JestPelny
         {
-            get 
+            get
             {
                 return kolejka.Count == _pojemnosc;
             }
+        }
+
+        public event EventHandler<ElementUsunietyEventArgs<T>> elementUsuniety;
+
+    }
+    public class ElementUsunietyEventArgs<T> : EventArgs
+    {
+        public T ElementUsuniety { get; set; }
+        public T ElemntNowy { get; set; }
+        public ElementUsunietyEventArgs(T elementUsuniety, T elementNowy)
+        {
+            ElementUsuniety = elementUsuniety;
+            ElemntNowy = elementNowy;
         }
 
     }

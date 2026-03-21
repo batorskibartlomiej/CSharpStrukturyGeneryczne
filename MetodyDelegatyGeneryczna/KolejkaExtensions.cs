@@ -2,6 +2,7 @@
 
 using _4_metodyDelegatyGeneryczne;
 using System.ComponentModel;
+using System.Linq;
 
 
 namespace __4_metodyDelegatyGeneryczne
@@ -9,21 +10,21 @@ namespace __4_metodyDelegatyGeneryczne
     public static class KolejkaExtensions
     {
 
-        public delegate void Drukarka<T>(T dane);
-        public static IEnumerable<Twyjscie> ElementJako<T,Twyjscie>(this IKolejka<T> kolejka)
+        
+        public static IEnumerable<Twyjscie> Mapuj<T, Twyjscie>(this IKolejka<T> kolejka, Converter<T, Twyjscie>konwerter)
         {
-            var konwerter = TypeDescriptor.GetConverter(typeof(T));
+            return kolejka.Select(i=>konwerter(i));
 
-            foreach (var item in kolejka)
-            {
-                Twyjscie wynik = (Twyjscie)konwerter.ConvertTo(item, typeof(Twyjscie));
-                yield return wynik;
+            //foreach (var item in kolejka)
+            //{
+            //    Twyjscie wynik = konwerter(item);
+            //    yield return wynik;
 
-            }
+            //}
 
         }
 
-        public static void Drukuj<T>(this IKolejka<T> kolejka, Drukarka<T> wydruk)
+        public static void Drukuj<T>(this IKolejka<T> kolejka, Action<T> wydruk)
         {
 
             foreach (var item in kolejka)
